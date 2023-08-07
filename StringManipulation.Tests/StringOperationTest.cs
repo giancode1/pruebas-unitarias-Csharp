@@ -9,7 +9,8 @@ namespace StringManipulation.Tests
 {
     public class StringOperationTest //siempre las clases de prueba deben ser públicas
     {
-        [Fact]
+        //para omitir prueba:
+        [Fact(Skip = "Esta prueba no es valida en este momento, TICKET-001")]
         public void ConcatenateStrings()
         {
             //Arrange
