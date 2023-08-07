@@ -72,7 +72,7 @@ namespace StringManipulation.Tests
             var result = strOperations.QuantintyInWords("gato", 10);
 
             //Assert
-            Assert.StartsWith("diez", result);
+            Assert.StartsWith("diez", result);   //MI VISUAL STUDIO ESTA EN ESPAÑOL
             Assert.Contains("gato", result);
             Assert.Equal("diez gatos", result);
         }
@@ -110,6 +110,34 @@ namespace StringManipulation.Tests
             Assert.ThrowsAny<ArgumentOutOfRangeException>(() => strOperations.TruncateString("hola",0));
         }
 
+        //Atributos Theory e InlineData
+        [Theory]
+        [InlineData("V", 5)]
+        [InlineData("III", 3)]
+        [InlineData("X", 10)]
+        public void FromRomanToNumber(string romanNumber, int expected)
+        {
+            var strOperations = new StringOperations();
+
+            var result = strOperations.FromRomanToNumber(romanNumber);
+
+            Assert.Equal(expected, result);
+        }
+
+        [Theory]
+        [InlineData("oro", true)]
+        [InlineData("palindromo", false)]
+        public void IsPalindrome(string word, bool expected)
+        {
+            //Arrange
+            var strOperations = new StringOperations();
+
+            //Act
+            var result = strOperations.IsPalindrome(word);
+
+            //Assert
+            Assert.Equal(expected, result);
+        }
 
     }
 }
