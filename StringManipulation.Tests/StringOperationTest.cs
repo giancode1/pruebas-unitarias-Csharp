@@ -62,6 +62,54 @@ namespace StringManipulation.Tests
             //Assert
             Assert.Equal("hola,mundoquerido", result);
         }
-        
+        [Fact]
+        public void QuantintyInWords() 
+        {
+            //Arrange
+            var strOperations = new StringOperations();
+
+            //Act
+            var result = strOperations.QuantintyInWords("gato", 10);
+
+            //Assert
+            Assert.StartsWith("diez", result);
+            Assert.Contains("gato", result);
+            Assert.Equal("diez gatos", result);
+        }
+
+        [Fact]
+        public void GetStringLength()
+        {
+            //Arrange
+            var strOperations = new StringOperations();
+
+            //Act
+            var result = strOperations.GetStringLength("hola");
+
+            //Assert
+            Assert.Equal(4, result);
+        }
+
+        [Fact]
+        public void GetStringLength_Exception() //voy a comprobar que de una excepcion
+        {
+            //Arrange
+            var strOperations = new StringOperations();
+
+            //Assert
+            Assert.ThrowsAny<ArgumentNullException>(()=>strOperations.GetStringLength(null));
+        }
+
+        [Fact]
+        public void TruncateString_Exception()
+        {
+            //Arrange
+            var strOperations = new StringOperations();
+
+            //Assert
+            Assert.ThrowsAny<ArgumentOutOfRangeException>(() => strOperations.TruncateString("hola",0));
+        }
+
+
     }
 }
