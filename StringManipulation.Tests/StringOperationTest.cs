@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Xunit;  //para que funcione Fact
+using Moq; //libreria Moq
+using Microsoft.Extensions.Logging;
 
 namespace StringManipulation.Tests
 {
@@ -138,6 +140,18 @@ namespace StringManipulation.Tests
 
             //Assert
             Assert.Equal(expected, result);
+        }
+
+        //Moq
+        [Fact]
+        public void CountOccurrences()
+        {
+            var mockLogger = new Mock<ILogger<StringOperations>>();
+            var strOperations = new StringOperations(mockLogger.Object);
+
+            var result = strOperations.CountOccurrences("hola gian", 'a');
+
+            Assert.Equal(2, result);
         }
 
     }
