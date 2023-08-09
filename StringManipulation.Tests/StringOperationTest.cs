@@ -12,7 +12,8 @@ namespace StringManipulation.Tests
     public class StringOperationTest //siempre las clases de prueba deben ser públicas
     {
         //para omitir prueba:
-        [Fact(Skip = "Esta prueba no es valida en este momento, TICKET-001")]
+        //[Fact(Skip = "Esta prueba no es valida en este momento, TICKET-001")]
+        [Fact]
         public void ConcatenateStrings()
         {
             //Arrange
@@ -111,6 +112,36 @@ namespace StringManipulation.Tests
 
             //Assert
             Assert.ThrowsAny<ArgumentOutOfRangeException>(() => strOperations.TruncateString("hola",0));
+        }
+
+        [Fact]
+        public void TruncateString_InputEmpty()
+        {
+            var strOperations = new StringOperations();
+
+            var result = strOperations.TruncateString("", 2);
+
+            Assert.Equal("",result);
+        }
+
+        [Fact]
+        public void TruncateString_MaxLength()
+        {
+            var strOperations = new StringOperations();
+
+            var result = strOperations.TruncateString("hola", 10);
+
+            Assert.Equal("hola", result);
+        }
+
+        [Fact]
+        public void TruncateString()
+        {
+            var strOperations = new StringOperations();
+
+            var result = strOperations.TruncateString("domingo", 4);
+
+            Assert.Equal("domi", result);
         }
 
         //Atributos Theory e InlineData
